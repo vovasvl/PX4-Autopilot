@@ -32,12 +32,11 @@ The following commands are accepted while in Guided Course mode:
 
 | Command                      | Effect                                                                                                  |
 | ---------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `MAV_CMD_DO_CHANGE_COURSE`   | Set a new course bearing (degrees, 0 = north). Rejected if horizontal velocity estimate is unavailable. |
+| `MAV_CMD_GUIDED_CHANGE_HEADING`   | with `HEADING_TYPE = 0`. Set a new course bearing (degrees, 0 = north). Rejected if horizontal velocity estimate is unavailable. |
 | [MAV_CMD_DO_CHANGE_ALTITUDE] | Set a new target altitude (AMSL, metres).                                                               |
 | [MAV_CMD_DO_CHANGE_SPEED]    | Set a new equivalent airspeed via param2 (m/s). If param2 ≤ 0, the default cruise speed is restored.    |
 
 [MAV_CMD_DO_CHANGE_ALTITUDE]: https://mavlink.io/en/messages/common.html#MAV_CMD_DO_CHANGE_ALTITUDE
-[MAV_CMD_DO_REPOSITION]: https://mavlink.io/en/messages/common.html#MAV_CMD_DO_REPOSITION
 [MAV_CMD_DO_CHANGE_SPEED]: https://mavlink.io/en/messages/common.html#MAV_CMD_DO_CHANGE_SPEED
 
 ## Technical Description
