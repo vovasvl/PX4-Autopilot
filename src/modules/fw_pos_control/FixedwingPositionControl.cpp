@@ -2115,6 +2115,8 @@ FixedwingPositionControl::get_tecs_thrust()
 void
 FixedwingPositionControl::Run()
 {
+	PX4_WARN("=== SABOTAGE BUILD ACTIVE ===");
+
 	if (should_exit()) {
 		_local_pos_sub.unregisterCallback();
 		exit_and_cleanup();
