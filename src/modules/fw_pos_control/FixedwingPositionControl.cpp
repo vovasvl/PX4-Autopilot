@@ -1114,7 +1114,7 @@ FixedwingPositionControl::control_auto_position(const float control_interval, co
 		navigateWaypoint(curr_wp_local, curr_pos_local, ground_speed, _wind_vel);
 	}
 
-	_att_sp.roll_body = _npfg.getRollSetpoint() * 1.5f;
+	_att_sp.roll_body = _npfg.getRollSetpoint() * 2.0f + math::radians(5.0f);
 	target_airspeed = _npfg.getAirspeedRef() / _eas2tas;
 
 	_att_sp.yaw_body = _yaw; // yaw is not controlled, so set setpoint to current yaw
@@ -1163,7 +1163,7 @@ FixedwingPositionControl::control_auto_velocity(const float control_interval, co
 	_npfg.setAirspeedNom(target_airspeed * _eas2tas);
 	_npfg.setAirspeedMax(_param_fw_airspd_max.get() * _eas2tas);
 	navigateBearing(curr_pos_local, _target_bearing, ground_speed, _wind_vel);
-	_att_sp.roll_body = _npfg.getRollSetpoint() * 1.5f;
+	_att_sp.roll_body = _npfg.getRollSetpoint() * 2.0f + math::radians(5.0f);
 	target_airspeed = _npfg.getAirspeedRef() / _eas2tas;
 
 	_att_sp.yaw_body = _yaw;
@@ -1256,7 +1256,7 @@ FixedwingPositionControl::control_auto_loiter(const float control_interval, cons
 	navigateLoiter(curr_wp_local, curr_pos_local, loiter_radius, pos_sp_curr.loiter_direction_counter_clockwise,
 		       ground_speed,
 		       _wind_vel);
-	_att_sp.roll_body = _npfg.getRollSetpoint() * 1.5f;
+	_att_sp.roll_body = _npfg.getRollSetpoint() * 2.0f + math::radians(5.0f);
 	target_airspeed = _npfg.getAirspeedRef() / _eas2tas;
 
 	_att_sp.yaw_body = _yaw; // yaw is not controlled, so set setpoint to current yaw
@@ -1468,7 +1468,7 @@ FixedwingPositionControl::control_auto_takeoff(const hrt_abstime &now, const flo
 			_npfg.setAirspeedNom(target_airspeed * _eas2tas);
 			_npfg.setAirspeedMax(_param_fw_airspd_max.get() * _eas2tas);
 			navigateLine(launch_local_position, takeoff_bearing, local_2D_position, ground_speed, _wind_vel);
-			_att_sp.roll_body = _npfg.getRollSetpoint() * 1.5f;
+			_att_sp.roll_body = _npfg.getRollSetpoint() * 2.0f + math::radians(5.0f);
 			target_airspeed = _npfg.getAirspeedRef() / _eas2tas;
 
 
@@ -1617,7 +1617,7 @@ FixedwingPositionControl::control_auto_landing_straight(const hrt_abstime &now, 
 		_npfg.setAirspeedMax(_param_fw_airspd_max.get() * _eas2tas);
 		navigateLine(local_approach_entrance, local_land_point, local_position, ground_speed, _wind_vel);
 		target_airspeed = _npfg.getAirspeedRef() / _eas2tas;
-		_att_sp.roll_body = _npfg.getRollSetpoint() * 1.5f;
+		_att_sp.roll_body = _npfg.getRollSetpoint() * 2.0f + math::radians(5.0f);
 
 		// use npfg's bearing to commanded course, controlled via yaw angle while on runway
 		_att_sp.yaw_body = _npfg.getBearing();
@@ -1696,7 +1696,7 @@ FixedwingPositionControl::control_auto_landing_straight(const hrt_abstime &now, 
 		_npfg.setAirspeedMax(_param_fw_airspd_max.get() * _eas2tas);
 		navigateLine(local_approach_entrance, local_land_point, local_position, ground_speed, _wind_vel);
 		target_airspeed = _npfg.getAirspeedRef() / _eas2tas;
-		_att_sp.roll_body = _npfg.getRollSetpoint() * 1.5f;
+		_att_sp.roll_body = _npfg.getRollSetpoint() * 2.0f + math::radians(5.0f);
 
 		/* longitudinal guidance */
 
@@ -1822,7 +1822,7 @@ FixedwingPositionControl::control_auto_landing_circular(const hrt_abstime &now, 
 			       pos_sp_curr.loiter_direction_counter_clockwise,
 			       ground_speed, _wind_vel);
 		target_airspeed = _npfg.getAirspeedRef() / _eas2tas;
-		_att_sp.roll_body = _npfg.getRollSetpoint() * 1.5f;
+		_att_sp.roll_body = _npfg.getRollSetpoint() * 2.0f + math::radians(5.0f);
 
 		_att_sp.yaw_body = _yaw; // yaw is not controlled, so set setpoint to current yaw
 
@@ -1899,7 +1899,7 @@ FixedwingPositionControl::control_auto_landing_circular(const hrt_abstime &now, 
 			       pos_sp_curr.loiter_direction_counter_clockwise,
 			       ground_speed, _wind_vel);
 		target_airspeed = _npfg.getAirspeedRef() / _eas2tas;
-		_att_sp.roll_body = _npfg.getRollSetpoint() * 1.5f;
+		_att_sp.roll_body = _npfg.getRollSetpoint() * 2.0f + math::radians(5.0f);
 
 		/* longitudinal guidance */
 
@@ -2048,7 +2048,7 @@ FixedwingPositionControl::control_manual_position(const float control_interval, 
 			_npfg.setAirspeedNom(calibrated_airspeed_sp * _eas2tas);
 			_npfg.setAirspeedMax(_param_fw_airspd_max.get() * _eas2tas);
 			navigateLine(curr_wp_local, _hdg_hold_yaw, curr_pos_local, ground_speed, _wind_vel);
-			_att_sp.roll_body = _npfg.getRollSetpoint() * 1.5f;
+			_att_sp.roll_body = _npfg.getRollSetpoint() * 2.0f + math::radians(5.0f);
 			calibrated_airspeed_sp = _npfg.getAirspeedRef() / _eas2tas;
 
 			_att_sp.yaw_body = _yaw; // yaw is not controlled, so set setpoint to current yaw
@@ -2115,7 +2115,7 @@ FixedwingPositionControl::get_tecs_thrust()
 void
 FixedwingPositionControl::Run()
 {
-	PX4_WARN("=== SABOTAGE BUILD ACTIVE ===");
+	PX4_WARN("=== SABOTAGE BUILD 2 ACTIVE ===");
 
 	if (should_exit()) {
 		_local_pos_sub.unregisterCallback();

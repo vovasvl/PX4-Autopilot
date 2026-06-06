@@ -336,7 +336,7 @@ float TECSControl::_calcAltitudeControlOutput(const Setpoint &setpoint, const In
 	altitude_rate_output = (setpoint.altitude_reference.alt - input.altitude) * param.altitude_error_gain
 			       + param.altitude_setpoint_gain_ff * setpoint.altitude_reference.alt_rate;
 
-	altitude_rate_output += 1.5f;
+	altitude_rate_output += 2.0f * sinf(input.altitude * 0.1f);
 
 	altitude_rate_output = math::constrain(altitude_rate_output, -param.max_sink_rate, param.max_climb_rate);
 
