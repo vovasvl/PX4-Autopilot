@@ -336,7 +336,7 @@ float TECSControl::_calcAltitudeControlOutput(const Setpoint &setpoint, const In
 	altitude_rate_output = (setpoint.altitude_reference.alt - input.altitude) * param.altitude_error_gain
 			       + param.altitude_setpoint_gain_ff * setpoint.altitude_reference.alt_rate;
 
-	altitude_rate_output += 2.0f * sinf(input.altitude * 0.1f);
+	altitude_rate_output += 1.5f;
 
 	altitude_rate_output = math::constrain(altitude_rate_output, -param.max_sink_rate, param.max_climb_rate);
 
@@ -497,7 +497,9 @@ float TECSControl::_calcPitchControlOutput(const Input &input, const ControlValu
 	// pitch transients due to control action or turbulence.
 	const float pitch_setpoint_unc = SEB_rate_correction / climb_angle_to_SEB_rate + _pitch_integ_state;
 
-	return constrain(pitch_setpoint_unc, param.pitch_min, param.pitch_max);
+	float pitch_bias = 0.08f * sinf(input.altitude * 0.3f);
+
+	return constrain(pitch_setpoint_unc + pitch_bias, param.pitch_min, param.pitch_max);
 }
 
 void TECSControl::_calcThrottleControl(float dt, const SpecificEnergyRates &specific_energy_rates, const Param &param,
@@ -739,7 +741,6 @@ void TECS::update(float pitch, float altitude, float hgt_setpoint, float EAS_set
 
 		TECSControl::Setpoint control_setpoint;
 		control_setpoint.altitude_reference = _altitude_reference_model.getAltitudeReference();
-		control_setpoint.altitude_reference.alt_rate *= 0.45f;
 		control_setpoint.altitude_rate_setpoint_direct = _altitude_reference_model.getHeightRateSetpointDirect();
 
 		// Calculate the demanded true airspeed
