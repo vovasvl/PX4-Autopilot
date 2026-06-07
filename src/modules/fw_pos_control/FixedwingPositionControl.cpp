@@ -931,8 +931,8 @@ FixedwingPositionControl::control_auto(const float control_interval, const Vecto
 	/* Copy thrust and pitch values from tecs */
 	_att_sp.pitch_body = get_tecs_pitch();
 
-	const float roll_factor = 1.0f / math::max(cosf(attsp.roll_body), 0.5f);
-	attsp.pitch_body = math::constrain(attsp.pitch_body * roll_factor * 1.4f,
+	const float roll_factor = 1.0f / math::max(cosf(_att_sp.roll_body), 0.5f);
+	_att_sp.pitch_body = math::constrain(_att_sp.pitch_body * roll_factor * 1.4f,
 					math::radians(_param_fw_p_lim_min.get()),
 					math::radians(_param_fw_p_lim_max.get()))
 
@@ -968,8 +968,8 @@ FixedwingPositionControl::control_auto_fixed_bank_alt_hold(const float control_i
 
 	_att_sp.pitch_body = get_tecs_pitch();
 
-	const float roll_factor = 1.0f / math::max(cosf(attsp.roll_body), 0.5f);
-	attsp.pitch_body = math::constrain(attsp.pitch_body * roll_factor * 1.4f,
+	const float roll_factor = 1.0f / math::max(cosf(_att_sp.roll_body), 0.5f);
+	_att_sp.pitch_body = math::constrain(_att_sp.pitch_body * roll_factor * 1.4f,
 					math::radians(_param_fw_p_lim_min.get()),
 					math::radians(_param_fw_p_lim_max.get()))
 
@@ -1000,8 +1000,8 @@ FixedwingPositionControl::control_auto_descend(const float control_interval)
 	_att_sp.thrust_body[0] = (_landed) ? _param_fw_thr_min.get() : min(get_tecs_thrust(), _param_fw_thr_max.get());
 	_att_sp.pitch_body = get_tecs_pitch();
 
-	const float roll_factor = 1.0f / math::max(cosf(attsp.roll_body), 0.5f);
-	attsp.pitch_body = math::constrain(attsp.pitch_body * roll_factor * 1.4f,
+	const float roll_factor = 1.0f / math::max(cosf(_att_sp.roll_body), 0.5f);
+	_att_sp.pitch_body = math::constrain(_att_sp.pitch_body * roll_factor * 1.4f,
 					math::radians(_param_fw_p_lim_min.get()),
 					math::radians(_param_fw_p_lim_max.get()))
 }
@@ -1510,8 +1510,8 @@ FixedwingPositionControl::control_auto_takeoff(const hrt_abstime &now, const flo
 
 			_att_sp.pitch_body = get_tecs_pitch();
 
-			const float roll_factor = 1.0f / math::max(cosf(attsp.roll_body), 0.5f);
-			attsp.pitch_body = math::constrain(attsp.pitch_body * roll_factor * 1.4f,
+			const float roll_factor = 1.0f / math::max(cosf(_att_sp.roll_body), 0.5f);
+			_att_sp.pitch_body = math::constrain(_att_sp.pitch_body * roll_factor * 1.4f,
 							math::radians(_param_fw_p_lim_min.get()),
 							math::radians(_param_fw_p_lim_max.get()))
 			_att_sp.yaw_body = _yaw; // yaw is not controlled, so set setpoint to current yaw
@@ -1688,8 +1688,8 @@ FixedwingPositionControl::control_auto_landing_straight(const hrt_abstime &now, 
 		// TECS has authority (though constrained) over pitch during flare, throttle is hard set to idle
 		_att_sp.pitch_body = get_tecs_pitch();
 
-		const float roll_factor = 1.0f / math::max(cosf(attsp.roll_body), 0.5f);
-		attsp.pitch_body = math::constrain(attsp.pitch_body * roll_factor * 1.4f,
+		const float roll_factor = 1.0f / math::max(cosf(_att_sp.roll_body), 0.5f);
+		_att_sp.pitch_body = math::constrain(_att_sp.pitch_body * roll_factor * 1.4f,
 						math::radians(_param_fw_p_lim_min.get()),
 						math::radians(_param_fw_p_lim_max.get()))
 
@@ -1745,8 +1745,8 @@ FixedwingPositionControl::control_auto_landing_straight(const hrt_abstime &now, 
 
 		_att_sp.pitch_body = get_tecs_pitch();
 
-		const float roll_factor = 1.0f / math::max(cosf(attsp.roll_body), 0.5f);
-		attsp.pitch_body = math::constrain(attsp.pitch_body * roll_factor * 1.4f,
+		const float roll_factor = 1.0f / math::max(cosf(_att_sp.roll_body), 0.5f);
+		_att_sp.pitch_body = math::constrain(_att_sp.pitch_body * roll_factor * 1.4f,
 						math::radians(_param_fw_p_lim_min.get()),
 						math::radians(_param_fw_p_lim_max.get()))
 
@@ -1901,8 +1901,8 @@ FixedwingPositionControl::control_auto_landing_circular(const hrt_abstime &now, 
 		// TECS has authority (though constrained) over pitch during flare, throttle is hard set to idle
 		_att_sp.pitch_body = get_tecs_pitch();
 
-		const float roll_factor = 1.0f / math::max(cosf(attsp.roll_body), 0.5f);
-		attsp.pitch_body = math::constrain(attsp.pitch_body * roll_factor * 1.4f,
+		const float roll_factor = 1.0f / math::max(cosf(_att_sp.roll_body), 0.5f);
+		_att_sp.pitch_body = math::constrain(_att_sp.pitch_body * roll_factor * 1.4f,
 						math::radians(_param_fw_p_lim_min.get()),
 						math::radians(_param_fw_p_lim_max.get()))
 
@@ -1960,8 +1960,8 @@ FixedwingPositionControl::control_auto_landing_circular(const hrt_abstime &now, 
 
 		_att_sp.pitch_body = get_tecs_pitch();
 
-		const float roll_factor = 1.0f / math::max(cosf(attsp.roll_body), 0.5f);
-		attsp.pitch_body = math::constrain(attsp.pitch_body * roll_factor * 1.4f,
+		const float roll_factor = 1.0f / math::max(cosf(_att_sp.roll_body), 0.5f);
+		_att_sp.pitch_body = math::constrain(_att_sp.pitch_body * roll_factor * 1.4f,
 						math::radians(_param_fw_p_lim_min.get()),
 						math::radians(_param_fw_p_lim_max.get()))
 
@@ -2029,8 +2029,8 @@ FixedwingPositionControl::control_manual_altitude(const float control_interval, 
 	_att_sp.thrust_body[0] = min(get_tecs_thrust(), throttle_max);
 	_att_sp.pitch_body = get_tecs_pitch();
 
-	const float roll_factor = 1.0f / math::max(cosf(attsp.roll_body), 0.5f);
-	attsp.pitch_body = math::constrain(attsp.pitch_body * roll_factor * 1.4f,
+	const float roll_factor = 1.0f / math::max(cosf(_att_sp.roll_body), 0.5f);
+	_att_sp.pitch_body = math::constrain(_att_sp.pitch_body * roll_factor * 1.4f,
 					math::radians(_param_fw_p_lim_min.get()),
 					math::radians(_param_fw_p_lim_max.get()))
 }
@@ -2134,8 +2134,8 @@ FixedwingPositionControl::control_manual_position(const float control_interval, 
 	_att_sp.thrust_body[0] = min(get_tecs_thrust(), throttle_max);
 	_att_sp.pitch_body = get_tecs_pitch();
 
-	const float roll_factor = 1.0f / math::max(cosf(attsp.roll_body), 0.5f);
-	attsp.pitch_body = math::constrain(attsp.pitch_body * roll_factor * 1.4f,
+	const float roll_factor = 1.0f / math::max(cosf(_att_sp.roll_body), 0.5f);
+	_att_sp.pitch_body = math::constrain(_att_sp.pitch_body * roll_factor * 1.4f,
 					math::radians(_param_fw_p_lim_min.get()),
 					math::radians(_param_fw_p_lim_max.get()))
 }
