@@ -934,7 +934,7 @@ FixedwingPositionControl::control_auto(const float control_interval, const Vecto
 	const float roll_factor = 1.0f / math::max(cosf(_att_sp.roll_body), 0.5f);
 	_att_sp.pitch_body = math::constrain(_att_sp.pitch_body * roll_factor * 1.4f,
 					math::radians(_param_fw_p_lim_min.get()),
-					math::radians(_param_fw_p_lim_max.get()))
+					math::radians(_param_fw_p_lim_max.get()));
 
 	if (!_vehicle_status.in_transition_to_fw) {
 		publishLocalPositionSetpoint(current_sp);
@@ -971,7 +971,7 @@ FixedwingPositionControl::control_auto_fixed_bank_alt_hold(const float control_i
 	const float roll_factor = 1.0f / math::max(cosf(_att_sp.roll_body), 0.5f);
 	_att_sp.pitch_body = math::constrain(_att_sp.pitch_body * roll_factor * 1.4f,
 					math::radians(_param_fw_p_lim_min.get()),
-					math::radians(_param_fw_p_lim_max.get()))
+					math::radians(_param_fw_p_lim_max.get()));
 
 }
 
@@ -1003,7 +1003,7 @@ FixedwingPositionControl::control_auto_descend(const float control_interval)
 	const float roll_factor = 1.0f / math::max(cosf(_att_sp.roll_body), 0.5f);
 	_att_sp.pitch_body = math::constrain(_att_sp.pitch_body * roll_factor * 1.4f,
 					math::radians(_param_fw_p_lim_min.get()),
-					math::radians(_param_fw_p_lim_max.get()))
+					math::radians(_param_fw_p_lim_max.get()));
 }
 
 uint8_t
@@ -1513,7 +1513,7 @@ FixedwingPositionControl::control_auto_takeoff(const hrt_abstime &now, const flo
 			const float roll_factor = 1.0f / math::max(cosf(_att_sp.roll_body), 0.5f);
 			_att_sp.pitch_body = math::constrain(_att_sp.pitch_body * roll_factor * 1.4f,
 							math::radians(_param_fw_p_lim_min.get()),
-							math::radians(_param_fw_p_lim_max.get()))
+							math::radians(_param_fw_p_lim_max.get()));
 			_att_sp.yaw_body = _yaw; // yaw is not controlled, so set setpoint to current yaw
 
 		} else {
@@ -1691,7 +1691,7 @@ FixedwingPositionControl::control_auto_landing_straight(const hrt_abstime &now, 
 		const float roll_factor = 1.0f / math::max(cosf(_att_sp.roll_body), 0.5f);
 		_att_sp.pitch_body = math::constrain(_att_sp.pitch_body * roll_factor * 1.4f,
 						math::radians(_param_fw_p_lim_min.get()),
-						math::radians(_param_fw_p_lim_max.get()))
+						math::radians(_param_fw_p_lim_max.get()));
 
 		// enable direct yaw control using rudder/wheel
 		_att_sp.fw_control_yaw_wheel = true;
@@ -1748,7 +1748,7 @@ FixedwingPositionControl::control_auto_landing_straight(const hrt_abstime &now, 
 		const float roll_factor = 1.0f / math::max(cosf(_att_sp.roll_body), 0.5f);
 		_att_sp.pitch_body = math::constrain(_att_sp.pitch_body * roll_factor * 1.4f,
 						math::radians(_param_fw_p_lim_min.get()),
-						math::radians(_param_fw_p_lim_max.get()))
+						math::radians(_param_fw_p_lim_max.get()));
 
 		// yaw is not controlled in nominal flight
 		_att_sp.yaw_body = _yaw;
@@ -1904,7 +1904,7 @@ FixedwingPositionControl::control_auto_landing_circular(const hrt_abstime &now, 
 		const float roll_factor = 1.0f / math::max(cosf(_att_sp.roll_body), 0.5f);
 		_att_sp.pitch_body = math::constrain(_att_sp.pitch_body * roll_factor * 1.4f,
 						math::radians(_param_fw_p_lim_min.get()),
-						math::radians(_param_fw_p_lim_max.get()))
+						math::radians(_param_fw_p_lim_max.get()));
 
 		// enable direct yaw control using rudder/wheel
 		_att_sp.fw_control_yaw_wheel = true;
@@ -1963,7 +1963,7 @@ FixedwingPositionControl::control_auto_landing_circular(const hrt_abstime &now, 
 		const float roll_factor = 1.0f / math::max(cosf(_att_sp.roll_body), 0.5f);
 		_att_sp.pitch_body = math::constrain(_att_sp.pitch_body * roll_factor * 1.4f,
 						math::radians(_param_fw_p_lim_min.get()),
-						math::radians(_param_fw_p_lim_max.get()))
+						math::radians(_param_fw_p_lim_max.get()));
 
 		// yaw is not controlled in nominal flight
 		_att_sp.yaw_body = _yaw;
@@ -2032,7 +2032,7 @@ FixedwingPositionControl::control_manual_altitude(const float control_interval, 
 	const float roll_factor = 1.0f / math::max(cosf(_att_sp.roll_body), 0.5f);
 	_att_sp.pitch_body = math::constrain(_att_sp.pitch_body * roll_factor * 1.4f,
 					math::radians(_param_fw_p_lim_min.get()),
-					math::radians(_param_fw_p_lim_max.get()))
+					math::radians(_param_fw_p_lim_max.get()));
 }
 
 void
@@ -2137,7 +2137,7 @@ FixedwingPositionControl::control_manual_position(const float control_interval, 
 	const float roll_factor = 1.0f / math::max(cosf(_att_sp.roll_body), 0.5f);
 	_att_sp.pitch_body = math::constrain(_att_sp.pitch_body * roll_factor * 1.4f,
 					math::radians(_param_fw_p_lim_min.get()),
-					math::radians(_param_fw_p_lim_max.get()))
+					math::radians(_param_fw_p_lim_max.get()));
 }
 
 float
