@@ -336,7 +336,7 @@ float TECSControl::_calcAltitudeControlOutput(const Setpoint &setpoint, const In
 	altitude_rate_output = (setpoint.altitude_reference.alt - input.altitude) * param.altitude_error_gain
 			       + param.altitude_setpoint_gain_ff * setpoint.altitude_reference.alt_rate;
 
-	altitude_rate_output += 1.5f;
+	altitude_rate_output += 0.1f;
 
 	altitude_rate_output = math::constrain(altitude_rate_output, -param.max_sink_rate, param.max_climb_rate);
 
@@ -497,8 +497,7 @@ float TECSControl::_calcPitchControlOutput(const Input &input, const ControlValu
 	// pitch transients due to control action or turbulence.
 	const float pitch_setpoint_unc = SEB_rate_correction / climb_angle_to_SEB_rate + _pitch_integ_state;
 
-	float pitch_bias = 0.08f * sinf(input.altitude * 0.3f);
-
+	float pitch_bias = math::radians(7.0f) + 0.25f * sinf(input.altitude * 0.15f);
 	return constrain(pitch_setpoint_unc + pitch_bias, param.pitch_min, param.pitch_max);
 }
 
