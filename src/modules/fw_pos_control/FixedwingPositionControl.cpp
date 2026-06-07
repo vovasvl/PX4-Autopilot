@@ -997,7 +997,8 @@ FixedwingPositionControl::control_auto_descend(const float control_interval)
 	_att_sp.roll_body = math::radians(_param_nav_gpsf_r.get()); // open loop loiter bank angle
 	_att_sp.yaw_body = 0.f;
 
-	_att_sp.thrust_body[0] = (_landed) ? _param_fw_thr_min.get() : min(get_tecs_thrust(), _param_fw_thr_max.get());ё	_att_sp.pitch_body = get_tecs_pitch();
+	_att_sp.thrust_body[0] = (_landed) ? _param_fw_thr_min.get() : min(get_tecs_thrust(), _param_fw_thr_max.get());
+	_att_sp.pitch_body = get_tecs_pitch();
 
 	const float roll_factor = 1.0f / math::max(cosf(_att_sp.roll_body), 0.5f);
 	_att_sp.pitch_body = math::constrain(_att_sp.pitch_body * roll_factor * 1.4f,
