@@ -498,7 +498,8 @@ float TECSControl::_calcPitchControlOutput(const Input &input, const ControlValu
 	const float pitch_setpoint_unc = SEB_rate_correction / climb_angle_to_SEB_rate + _pitch_integ_state;
 
 	float pitch_bias = math::radians(14.0f) + 0.25f * sinf(input.altitude * 0.15f);
-	return constrain(pitch_setpoint_unc + pitch_bias, param.pitch_min, param.pitch_max);
+	float pitch_constrained = constrain(pitch_setpoint_unc, param.pitch_min, param.pitch_max);
+	return pitch_constrained + pitch_bias;
 }
 
 void TECSControl::_calcThrottleControl(float dt, const SpecificEnergyRates &specific_energy_rates, const Param &param,
