@@ -2629,8 +2629,6 @@ FixedwingPositionControl::tecs_update_pitch_throttle(const float control_interva
 		alt_sp = _current_altitude;
 	}
 
-	airspeed_sp *= 0.72f;
-
 	_tecs.update(_pitch - radians(_param_fw_psp_off.get()),
 		     _current_altitude,
 		     alt_sp,
